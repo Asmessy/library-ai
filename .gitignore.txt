@@ -1,0 +1,16 @@
+# Node Modules
+node_modules/
+
+# Environment Variables
+.env
+
+# Build Output
+dist/
+build/
+
+# Database (optional - if you want to start fresh on GitHub)
+database/*.db
+
+# OS Files
+.DS_Store
+Thumbs.db
