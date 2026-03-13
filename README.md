@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📚 AI Library Management System
 
 A complete full-stack web application designed to be beginner-friendly, clean, and production-structured. This system allows users to browse a book catalog, borrow/return books, and receive simple AI-powered book recommendations based on their borrowing history.
@@ -106,3 +107,6 @@ The application utilizes a local SQLite database with three core tables:
 - Add user profile image uploads via Cloudinary.
 - Implement soft-deletes and historical borrow tracking graphs for the Admin panel.
 - Add due dates and fine calculations for overdue returns.
+=======
+# library-ai
+>>>>>>> 224b2ef6ae857d6683a8a825f87b034a9514176b
