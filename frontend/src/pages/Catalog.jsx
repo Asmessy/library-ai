@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import api from '../services/api';
+import api, { BASE_URL } from '../services/api';
 import { AuthContext } from '../context/AuthContext';
 import { Search, Book, CheckCircle, Clock, X, FileText, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -149,7 +149,7 @@ const Catalog = () => {
                             <FileText className="w-4 h-4" />
                           </Link>
                           <a 
-                            href={`http://localhost:5000${book.pdf_url}`}
+                            href={`${BASE_URL}${book.pdf_url}`}
                             download
                             target="_blank"
                             rel="noreferrer"
@@ -218,7 +218,7 @@ const Catalog = () => {
                           <FileText className="w-4 h-4" /> Read
                         </Link>
                         <a 
-                          href={`http://localhost:5000${selectedBook.pdf_url}`}
+                          href={`${BASE_URL}${selectedBook.pdf_url}`}
                           download
                           target="_blank"
                           rel="noreferrer"

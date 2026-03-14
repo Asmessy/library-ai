@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import api from '../services/api';
+import api, { BASE_URL } from '../services/api';
 
 const BookReader = () => {
   const { bookId } = useParams();
@@ -62,7 +62,7 @@ const BookReader = () => {
       <div className="flex-grow bg-slate-900 rounded-xl overflow-hidden border border-slate-700 shadow-xl">
         {book.pdf_url ? (
           <iframe 
-            src={`http://localhost:5000${book.pdf_url}`} 
+            src={`${BASE_URL}${book.pdf_url}`} 
             title={book.title}
             className="w-full h-full border-0"
           ></iframe>
