@@ -110,3 +110,4 @@ The application utilizes a local SQLite database with three core tables:
 =======
 # library-ai
 >>>>>>> 224b2ef6ae857d6683a8a825f87b034a9514176b
+## Version 2.0 Release Update
