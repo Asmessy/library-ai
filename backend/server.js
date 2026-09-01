@@ -18,18 +18,25 @@ const initDB = async () => {
     const tableCheck = await db.getAsync("SELECT name FROM sqlite_master WHERE type='table' AND name='Users'");
     if (!tableCheck) {
       console.log("Initializing database schema...");
-      const schemaSql = fs.readFileSync(path.join(__dirname, '../database/schema.sql'), 'utf8');
-      const seedSql = fs.readFileSync(path.join(__dirname, '../database/seed.sql'), 'utf8');
-      
+
+      // Look for schema inside Docker (/app/database) or relative path in local development
+      const dbDir = fs.existsSync(path.join(__dirname, 'database'))
+        ? path.join(__dirname, 'database')
+        : path.join(__dirname, '../database');
+
+      const schemaSql = fs.readFileSync(path.join(dbDir, 'schema.sql'), 'utf8');
+      const seedSql = fs.readFileSync(path.join(dbDir, 'seed.sql'), 'utf8');
+
       const runTransaction = () => new Promise((resolve, reject) => {
-          db.exec(schemaSql, (err) => {
-              if (err) return reject(err);
-              db.exec(seedSql, (err2) => {
-                  if (err2) return reject(err2);
-                  resolve();
-              });
+        db.exec(schemaSql, (err) => {
+          if (err) return reject(err);
+          db.exec(seedSql, (err2) => {
+            if (err2) return reject(err2);
+            resolve();
           });
+        });
       });
+
       await runTransaction();
       console.log("Database initialized and seeded.");
     }
