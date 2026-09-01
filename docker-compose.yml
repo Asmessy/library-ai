@@ -1,0 +1,30 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+
+    container_name: library-ai-backend
+
+    env_file:
+      - ./backend/.env
+
+    volumes:
+      - ./database:/app/database
+
+    restart: unless-stopped
+
+
+  frontend:
+    build:
+      context: ./frontend
+
+    container_name: library-ai-frontend
+
+    ports:
+      - "80:80"
+
+    depends_on:
+      - backend
+
+    restart: unless-stopped

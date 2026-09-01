@@ -1,0 +1,41 @@
+name: Library AI CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+
+  build-test-deploy:
+
+    runs-on: self-hosted
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          npm ci
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Build Docker Images
+        run: docker compose build
+
+      - name: Deploy Application
+        run: |
+          docker compose down
+          docker compose up -d
